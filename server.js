@@ -54,6 +54,41 @@ app.get('/api', function api_index(req, res) {
   });
 });
 
+app.get('/api/profile', function(req, res){
+  res.json({
+    name: "Brian Byers",
+    github_link: "https://github.com/brianpbyers",
+    github_profile_image: "https://avatars2.githubusercontent.com/u/33646018?s=460&v=4",
+    current_city: "Denver",
+    pets:[{
+      name: "Ivy",
+      type: "Dog",
+      breed: "Chihuahua",
+      owner: "my girlfriend"
+    }]
+  });
+});
+
+app.get('/api/airplanes', function(req, res){
+  
+});
+
+app.get('/api/airplanes/:id', function(req, res){
+  
+});
+
+app.post('/api/airplanes', function(req, res){
+  
+});
+
+app.put('/api/airplanes/:id', function(req, res){
+  
+});
+
+app.delete('/api/airplanes/:id', function(req, res){
+  
+});
+
 /**********
  * SERVER *
  **********/
