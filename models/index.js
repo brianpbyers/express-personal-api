@@ -4,4 +4,6 @@ mongoose.connect( process.env.MONGODB_URI ||
                   process.env.MONGOHQ_URL || 
                   "mongodb://localhost/personal-api");
 
+module.exports.Airplane = require("./airplane.js");
+
 // module.exports.Campsite = require("./campsite.js.example");
