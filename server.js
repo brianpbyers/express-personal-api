@@ -71,16 +71,23 @@ app.get('/api/profile', function(req, res){
 
 app.get('/api/airplanes', function(req, res){
   db.Airplane.find(function(err, airplanes){
+    if(err){res.send("There has been an error retrieving airplanes.",err);}
     res.json(airplanes);
   });
 });
 
 app.get('/api/airplanes/:id', function(req, res){
-  
+  db.Airplane.findById(req.params.id, function(err, airplane){
+    if(err){res.send("There has been an error finding the airplane", err);}
+    res.json(airplane);
+  });
 });
 
 app.post('/api/airplanes', function(req, res){
-  
+  db.Airplane.create(req.body, function(err, airplane){
+    if(err){res.send("There has been an error creating your airplane", err);}
+    res.json(airplane);
+  });
 });
 
 app.put('/api/airplanes/:id', function(req, res){
@@ -88,7 +95,10 @@ app.put('/api/airplanes/:id', function(req, res){
 });
 
 app.delete('/api/airplanes/:id', function(req, res){
-  
+  db.Airplane.remove({_id: req.params.id},function(err, airplane){
+    if(err){res.send("there has been an error removing the airplane",err);}
+    res.json(airplane);
+  });
 });
 
 /**********
@@ -97,5 +107,5 @@ app.delete('/api/airplanes/:id', function(req, res){
 
 // listen on port 3000
 app.listen(process.env.PORT || 3000, function () {
-  console.log('Express server is up and running on http://localhost:3000/');
+  console.log('Express server is up and running on ', process.env.PORT || 3000);
 });
