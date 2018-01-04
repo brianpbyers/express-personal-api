@@ -55,6 +55,8 @@ app.get('/api', function api_index(req, res) {
 });
 
 app.get('/api/profile', function(req, res){
+  let bDay = new Date(1988, 06, 11);
+  let milliSecondsAlive = Date.now() - bDay.getTime();
   res.json({
     name: "Brian Byers",
     github_link: "https://github.com/brianpbyers",
@@ -65,7 +67,8 @@ app.get('/api/profile', function(req, res){
       type: "Dog",
       breed: "Chihuahua",
       owner: "my girlfriend"
-    }]
+    }],
+    days_alive: milliSecondsAlive/1000/60/60/24
   });
 });
 
