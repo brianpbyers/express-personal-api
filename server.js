@@ -91,7 +91,17 @@ app.post('/api/airplanes', function(req, res){
 });
 
 app.put('/api/airplanes/:id', function(req, res){
-  
+  db.Airplane.findOne({_id:req.params.id}, function(err, airplane){
+    if(err){res.send("There has been an error updating your airplane", err);}
+    if(req.body.make){airplane.make = req.body.make;}
+    if(req.body.model){airplane.model = req.body.model;}
+    if(typeof(req.body.jet)!=="undefined"){airplane.jet = req.body.jet;}
+    console.log(airplane);
+    db.Airplane.update({_id:req.params.id},airplane,function(err, upPlane){
+      if(err){res.send("There has been an error updating your airplane");}
+      res.json(upPlane);
+    });
+  });
 });
 
 app.delete('/api/airplanes/:id', function(req, res){
