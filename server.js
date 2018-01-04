@@ -70,7 +70,9 @@ app.get('/api/profile', function(req, res){
 });
 
 app.get('/api/airplanes', function(req, res){
-  res.json(db.Airplane.find());
+  db.Airplane.find(function(err, airplanes){
+    res.json(airplanes);
+  });
 });
 
 app.get('/api/airplanes/:id', function(req, res){
