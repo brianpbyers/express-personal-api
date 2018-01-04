@@ -42,10 +42,10 @@ app.get('/api', function api_index(req, res) {
     documentation_url: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
     base_url: "https://lit-reaches-29632.herokuapp.com", //
     endpoints: [
-      {method: "GET", path: "/api", description: "Describes all available endpoints"},
+      {method: "GET", path: "/api", description: "Describes all available endpoints",},
       {method: "GET", path: "/api/profile", description: "Data about me"},
-      {method: "POST", path: "/api/airplanes", description: "Create a new airplane"},
-      {method: "PUT", path: "/api/airplanes/:id", description: "Update an existing airplane"},
+      {method: "POST", path: "/api/airplanes", description: "Create a new airplane.  Airplanes are in the following format:  make: String, model: String, jet: Boolean"},
+      {method: "PUT", path: "/api/airplanes/:id", description: "Update an existing airplane.  Not required to send entire airplane object.  Only what you are wanting to change"},
       {method: "GET", path: "/api/airplanes", description: "Returns all airplanes"},
       {method: "GET", path: "/api/airplanes/:id", description: "Returns a single airplane by id"},
       {method: "DELETE", path: "/api/airplanes/:id", description: "Removes an airplane by id"}
@@ -109,6 +109,10 @@ app.delete('/api/airplanes/:id', function(req, res){
     if(err){res.send("there has been an error removing the airplane",err);}
     res.json(airplane);
   });
+});
+
+app.get('*', function(req, res){
+  res.send('You have attempted to reach a page that does not exist.  Please refer to /api to see available pages');
 });
 
 /**********
