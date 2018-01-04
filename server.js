@@ -12,7 +12,7 @@ app.use(bodyParser.json());
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -70,7 +70,7 @@ app.get('/api/profile', function(req, res){
 });
 
 app.get('/api/airplanes', function(req, res){
-  
+  res.json(db.Airplane.find());
 });
 
 app.get('/api/airplanes/:id', function(req, res){
